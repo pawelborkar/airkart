@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import {
   getAllCategories,
-  //   getAllProductsFromACategory,
+    getAllProductsFromACategory,
 } from '../controllers/category.controllers.js';
 
 const router = Router({ mergeParams: true });
 
+router.route('/:category').get(getAllProductsFromACategory);
 router.route('/').get(getAllCategories);
-// router.route('/:category').get(getAllProductsFromACategory);
 
 export default router;
