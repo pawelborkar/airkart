@@ -16,6 +16,7 @@ const ProductSchema = new Schema(
     },
     category: {
       type: String,
+      lowercase: true,
       require: [
         true,
         'Please enter the category to which the product belongs.',

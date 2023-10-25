@@ -18,9 +18,10 @@ const getAllProducts = asyncHandler(async (req, res) => {
 });
 
 /*
-@desc: Get all products
+@desc: Get single product details
 @Author: Pawel Borkar
-@route: GET /api/v1/products
+@route: POST /api/v1/products
+@required body: id of the product
 @access: Public
 */
 const getSingleProduct = asyncHandler(async (req, res) => {
