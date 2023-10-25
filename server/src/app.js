@@ -9,7 +9,7 @@ dotenv.config({
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-const API_VERSION = process.env.API_VERSION.toLowerCase() || 'v1';
+const API_VERSION = process.env.API_VERSION || 'v1';
 
 app.use(express.json());
 app.use(`/api/${API_VERSION}/products`, product);
