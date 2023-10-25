@@ -6,5 +6,4 @@
 */
 const signUp = asyncHandler(async (req, res) => {
   const { fullname, email, password } = req;
-  
 });
