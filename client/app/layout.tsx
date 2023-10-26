@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     { media: '(prefers-color-scheme: dark)', color: 'black' },
   ],
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
+    icon: '/airkart-favicon-color.png',
+    shortcut: '/airkart-favicon-color.png',
     apple: '/apple-touch-icon.png',
   },
 };
@@ -41,7 +41,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
           <div className="flex flex-col justify-center items-center w-full h-full">
             <Navbar />
-            <main className="container mx-auto max-w-9xl  flex-grow">
+            <main className="container mx-auto max-w-9xl flex-grow">
               {children}
             </main>
           </div>

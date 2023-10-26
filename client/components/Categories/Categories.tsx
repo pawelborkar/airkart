@@ -36,11 +36,11 @@ export default function Categories() {
     },
   ];
   return (
-    <Card className="flex flex-row w-full h-32 justify-around items-center">
+    <Card className="flex flex-row w-full h-28 justify-around items-center">
       {categories.map((category) => {
         return (
           <div className="flex flex-col items-center" key={category.id}>
-            <Image width={80} alt={category.name} src={category.url} />
+            <Image width={50} alt={category.name} src={category.url} />
             <p className="text-md mt-2">{category.name}</p>
           </div>
         );
