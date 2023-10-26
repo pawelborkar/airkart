@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import {
   getAllCategories,
-    getAllProductsFromACategory,
+  getAllProductsFromACategory,
 } from '../controllers/category.controllers.js';
 
 const router = Router({ mergeParams: true });

@@ -13,6 +13,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({});
   return res.status(200).json({
     success: true,
+    count: products.length,
     products,
   });
 });
@@ -26,11 +27,26 @@ const getAllProducts = asyncHandler(async (req, res) => {
 */
 const getSingleProduct = asyncHandler(async (req, res) => {
   // console.log(req.body);
-  const products = await Product.findById(req.body.id);
+  const products = await Product.findById(req.params.id);
   return res.status(200).json({
     success: true,
     products,
   });
 });
 
-export { getAllProducts, getSingleProduct };
+/*
+@desc: Get single product details
+@Author: Pawel Borkar
+@route: POST /api/v1/products
+@required body: id of the product
+@access: Public
+*/
+const addNewProduct = asyncHandler(async (req, res) => {
+  const products = await Product.create(req.body);
+  return res.status(201).json({
+    success: true,
+    products,
+  });
+});
+
+export { getAllProducts, getSingleProduct, addNewProduct };
