@@ -10,8 +10,8 @@ const ProductSchema = new Schema(
       maxlength: 127,
     },
     slug: String,
-    inStock: {
-      type: Boolean,
+    stock: {
+      type: Number,
       require: [true, 'Please add the available of the product.'],
     },
     category: {
