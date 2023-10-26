@@ -10,7 +10,7 @@ const bannerImageURL = [
   'https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/6f431c55d08a768a.jpg?q=20',
   'https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/a199943586459434.jpg?q=20',
   'https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/e5abec1836e9fcd7.jpeg?q=20',
-  'https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/2850f035a6d3521e.jpeg?q=20'
+  'https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/2850f035a6d3521e.jpeg?q=20',
 ];
 
 const Banner = () => {
