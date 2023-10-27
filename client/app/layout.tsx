@@ -4,7 +4,7 @@ import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
 import { Providers } from './providers';
 import clsx from 'clsx';
-import Navbar from '@/components/navbar';
+import NavBar from '@/components/NavBar/NavBar';
 
 export const metadata: Metadata = {
   title: {
@@ -40,7 +40,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
           <div className="flex flex-col justify-center items-center w-full h-full">
-            <Navbar />
+            <NavBar />
             <main className="container mx-auto max-w-9xl flex-grow">
               {children}
             </main>
