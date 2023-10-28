@@ -1,12 +1,15 @@
-export const responseMessage = {
+export const responseMessages = {
   invalid: 'Invalid credentials',
   invalidToken: 'Invalid Token',
+  invalidEmail: 'Please enter a valid email',
+  incorrectPassword: 'Incorrect password. Please enter a valid password.',
+  notFound: 'User not found',
+  resetSuccess: 'Password reset successful.',
   signUp: 'Thank you for signing up.',
   signIn: 'Welcome',
+  signInError: 'Please provide a valid email and password.',
   signout: 'Logout successfully.',
-  notFound: 'User not found',
-  unableToSendEmail: 'Email could not be sent.',
-  resetSuccess: 'Password reset successful.',
-  incorrectPassword: 'Incorrect password. Please enter a valid password.',
+  userAlreadyExists: 'User already exists. Please sign in to continue.',
   updatePasswordSuccess: 'Password updated successfully.',
+  unableToSendEmail: 'Email could not be sent.',
 };
