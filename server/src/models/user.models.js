@@ -18,13 +18,6 @@ const UserSchema = Schema(
       lowercase: true,
       trim: true,
     },
-    username: {
-      type: String,
-      required: [true, 'Please enter a full name.'],
-      unique: true,
-      lowercase: true,
-      trim: true,
-    },
     email: {
       type: String,
       match: [
