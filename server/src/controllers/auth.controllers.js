@@ -16,11 +16,13 @@ const signUp = asyncHandler(async (req, res) => {
   const userExists = await User.findOne({
     $or: [{ email }],
   });
+
   if (userExists) {
     return res
       .status(400)
       .json({ success: false, message: responseMessages.userAlreadyExists });
   }
+
   const user = await User.create({
     fullname,
     email,
@@ -45,8 +47,52 @@ const signIn = asyncHandler(async (req, res, next) => {
 
   // Check for a registered user
   const user = await User.findOne({
-    $or: [{ email }],
-  });
+    $or: [{ email: email }, { password: password }],
+  }).select('+password');
+
+  if (!user) {
+    return next(new ErrorResponse(responseMessages.invalid, 401));
+  }
+
+  // Check if the password matches or not
+  const isMatched = await user.matchPassword(password);
+
+  if (!isMatched) {
+    return next(new ErrorResponse(responseMessages.incorrectPassword, 401));
+  }
+
+  sendTokenResponse(user, 200, res, responseMessages.signIn + user.fullname);
+});
+
+/*
+@desc: Sign Out as an user
+@Author: Pawel Borkar
+@route: POST /api/v1/auth/logout
+@access: Private
+*/
+const logOut = asyncHandler(async (req, res, next) => {
+  await User.findByIdAndUpdate(
+    req.user.id,
+    {
+      $set: {
+        refreshToken: undefined,
+      },
+    },
+    { new: true }
+  );
+  const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  };
+
+  res
+    .status(200)
+    .clearCookie('token', options)
+    .clearCookie('refreshToken', options)
+    .json({
+      success: true,
+      message: responseMessages.logOut,
+    });
 });
 
 // Helper for getting the token from model, create coookie and send response
@@ -73,4 +119,4 @@ const sendTokenResponse = (user, statusCode, res, message) => {
   });
 };
 
-export { signUp };
+export { signUp, signIn, logOut };
