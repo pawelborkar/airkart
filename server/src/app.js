@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './db/index.js';
-import { auth, category, product } from './routes/index.js';
+import { auth, category, product, profile } from './routes/index.js';
 import { errorHandler } from './middlewares/error.middlewares.js';
 dotenv.config({
   path: './.env',
@@ -17,10 +17,13 @@ app.use(express.json());
 // Error handler middleware
 app.use(errorHandler);
 
+// Routes
 app.use(`/api/${API_VERSION}/auth`, auth);
-app.use(`/api/${API_VERSION}/products`, product);
 app.use(`/api/${API_VERSION}/categories`, category);
+app.use(`/api/${API_VERSION}/products`, product);
+app.use(`/api/${API_VERSION}/profile`, profile);
 
+// Database connection
 connectDB();
 
 app.listen(PORT, () => {

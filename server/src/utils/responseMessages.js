@@ -13,4 +13,5 @@ export const responseMessages = {
   userAlreadyExists: 'User already exists. Please sign in to continue.',
   updatePasswordSuccess: 'Password updated successfully.',
   unableToSendEmail: 'Email could not be sent.',
+  userNotExist: 'User does not exist',
 };
