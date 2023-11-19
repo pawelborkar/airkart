@@ -1,5 +1,6 @@
 import { asyncHandler } from '../middlewares/asyncHandler.middlewares.js';
 import User from '../models/user.models.js';
+import Profile from '../models/profile.models.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import { responseMessages } from '../utils/responseMessages.js';
 
@@ -28,6 +29,13 @@ const signUp = asyncHandler(async (req, res) => {
     email,
     password,
   });
+
+  await Profile.create({
+    owner: user._id, // Reference the user's ObjectId
+    fullname,
+    email,
+  });
+
   sendTokenResponse(user, 201, res, responseMessages.signUp);
 });
 
@@ -71,28 +79,15 @@ const signIn = asyncHandler(async (req, res, next) => {
 @access: Private
 */
 const logOut = asyncHandler(async (req, res, next) => {
-  await User.findByIdAndUpdate(
-    req.user.id,
-    {
-      $set: {
-        refreshToken: undefined,
-      },
-    },
-    { new: true }
-  );
-  const options = {
+  res.cookie('token', 'none', {
+    expires: new Date(Date.now() + 10),
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-  };
+  });
 
-  res
-    .status(200)
-    .clearCookie('token', options)
-    .clearCookie('refreshToken', options)
-    .json({
-      success: true,
-      message: responseMessages.logOut,
-    });
+  res.status(200).json({
+    success: true,
+    message: responseMessages.logOut,
+  });
 });
 
 // Helper for getting the token from model, create coookie and send response
