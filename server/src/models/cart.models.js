@@ -26,7 +26,7 @@ const cartSchema = new Schema(
       type: Number,
       default: 0,
     },
-  },XMLDocument
+  },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
