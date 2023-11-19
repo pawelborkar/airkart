@@ -26,6 +26,7 @@ const getAllProductsFromACategory = asyncHandler(async (req, res) => {
     const products = await Product.find({ category }); // Find products with the specified category
     return res.status(200).json({
       success: true,
+      count: products.length,
       products,
     });
   } catch (error) {
