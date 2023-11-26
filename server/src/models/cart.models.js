@@ -1,16 +1,17 @@
 import { model, Schema } from 'mongoose';
-import { Product } from '../models/product.models.js';
+import Product from '../models/product.models.js';
+import User from '../models/user.models.js';
 
 const cartItemSchema = new Schema({
-  product: {
+  productId: {
     type: Schema.Types.ObjectId,
     ref: 'Product',
-    require: [true, 'Product required.'],
   },
   quantity: {
     type: Number,
+    required: true,
+    min: [1, 'Quantity cannot be less than 1'],
     default: 1,
-    required: [true, 'Please add atleast one unit'],
   },
 });
 
@@ -19,12 +20,10 @@ const cartSchema = new Schema(
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
-      required: true,
     },
-    items: [cartItemSchema],
-    total: {
-      type: Number,
-      default: 0,
+    items: {
+      type: [cartItemSchema],
+      default: [],
     },
   },
   {
@@ -34,4 +33,4 @@ const cartSchema = new Schema(
   { timestamps: true }
 );
 
-export default model('Cart', cartSchema);
+export const Cart = model('Cart', cartSchema);

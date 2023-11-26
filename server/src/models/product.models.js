@@ -40,10 +40,6 @@ const ProductSchema = new Schema(
       min: [1, 'Rating must be at least 1'],
       max: [5, 'Rating must can not be more than 5'],
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
     // user: {
     //   type: mongoose.Schema.ObjectId,
     //   ref: 'User',

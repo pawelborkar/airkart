@@ -2,7 +2,7 @@ import { asyncHandler } from '../middlewares/asyncHandler.middlewares.js';
 import User from '../models/user.models.js';
 import Profile from '../models/profile.models.js';
 import ErrorResponse from '../utils/errorResponse.js';
-import { responseMessages } from '../utils/responseMessages.js';
+import { RESPONSE } from '../utils/responseMessages.js';
 
 /*
 @desc: Sign Up as an user
@@ -19,9 +19,7 @@ const signUp = asyncHandler(async (req, res) => {
   });
 
   if (userExists) {
-    return res
-      .status(400)
-      .json({ success: false, message: responseMessages.userAlreadyExists });
+    return res.status(400).json({ success: false, message: RESPONSE.USER_ALREADY_EXISTS });
   }
 
   const user = await User.create({
@@ -36,7 +34,7 @@ const signUp = asyncHandler(async (req, res) => {
     email,
   });
 
-  sendTokenResponse(user, 201, res, responseMessages.signUp);
+  sendTokenResponse(user, 201, res, RESPONSE.SIGNUP);
 });
 
 /*
@@ -50,7 +48,7 @@ const signIn = asyncHandler(async (req, res, next) => {
 
   // Validate email  and password
   if (!email || !password) {
-    return next(new ErrorResponse(responseMessages.signInError, 400));
+    return next(new ErrorResponse(RESPONSE.SIGNIN_ERROR, 400));
   }
 
   // Check for a registered user
@@ -59,17 +57,17 @@ const signIn = asyncHandler(async (req, res, next) => {
   }).select('+password');
 
   if (!user) {
-    return next(new ErrorResponse(responseMessages.invalid, 401));
+    return next(new ErrorResponse(RESPONSE.INVALID, 401));
   }
 
   // Check if the password matches or not
   const isMatched = await user.matchPassword(password);
 
   if (!isMatched) {
-    return next(new ErrorResponse(responseMessages.incorrectPassword, 401));
+    return next(new ErrorResponse(RESPONSE.INCORRECT_PASSWORD, 401));
   }
 
-  sendTokenResponse(user, 200, res, responseMessages.signIn + user.fullname);
+  sendTokenResponse(user, 200, res, RESPONSE.SIGNIN + user.fullname);
 });
 
 /*
@@ -86,7 +84,7 @@ const logOut = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: responseMessages.logOut,
+    message: RESPONSE.LOGOUT,
   });
 });
 
@@ -97,9 +95,7 @@ const sendTokenResponse = (user, statusCode, res, message) => {
 
   // Options for cookie generation
   const options = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-    ),
+    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
   };
 
   // Enable security property (https) for production
