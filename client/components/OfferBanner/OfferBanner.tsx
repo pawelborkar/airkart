@@ -4,7 +4,7 @@ import { Card, Image } from '@nextui-org/react';
 
 const OfferBanner = () => {
   return (
-    <Card>
+    <Card className="my-4">
       <Image
         alt="offer-banner"
         width={'100%'}

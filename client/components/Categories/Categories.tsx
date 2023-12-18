@@ -1,5 +1,4 @@
 'use client';
-import React from 'react';
 import { Card, Image } from '@nextui-org/react';
 
 export default function Categories() {
@@ -39,7 +38,7 @@ export default function Categories() {
     <Card className="flex flex-row w-full h-28 justify-around items-center">
       {categories.map((category) => {
         return (
-          <div className="flex flex-col items-center" key={category.id}>
+          <div className="flex flex-col items-center cursor-pointer" key={category.id}>
             <Image width={50} alt={category.name} src={category.url} />
             <p className="text-md mt-2">{category.name}</p>
           </div>

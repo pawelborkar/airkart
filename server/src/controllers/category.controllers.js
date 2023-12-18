@@ -1,5 +1,6 @@
 import { asyncHandler } from '../middlewares/asyncHandler.middlewares.js';
 import Product from '../models/product.models.js';
+import { RESPONSE } from '../utils/responseMessages.js';
 /*
 @desc: Get all categories
 @Author: Pawel Borkar
@@ -26,11 +27,12 @@ const getAllProductsFromACategory = asyncHandler(async (req, res) => {
     const products = await Product.find({ category }); // Find products with the specified category
     return res.status(200).json({
       success: true,
+      count: products.length,
       products,
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to retrieve products' });
+    res.status(500).json({ error: RESPONSE.FAIL_PRODUCT_RETRIEVAL });
   }
 });
 

@@ -19,3 +19,6 @@ services:
       - MONGODB_URI=mongodb://mongodb:27017
       - DB_NAME=airkart
       - API_VERSION=v1
+      - JWT_SECRET=$pafjwePla@fadj1l2j%kajsdj1290!fjadlk@jkljdajd$k
+      - JWT_EXPIRE=7d
+      - JWT_COOKIE_EXPIRE=7

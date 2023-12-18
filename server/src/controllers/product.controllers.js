@@ -3,6 +3,7 @@ Controller: product
 */
 import { asyncHandler } from '../middlewares/asyncHandler.middlewares.js';
 import Product from '../models/product.models.js';
+
 /*
 @desc: Get all products
 @Author: Pawel Borkar
@@ -35,11 +36,11 @@ const getSingleProduct = asyncHandler(async (req, res) => {
 });
 
 /*
-@desc: Get single product details
+@desc: Add a new Product 
 @Author: Pawel Borkar
 @route: POST /api/v1/products
-@required body: id of the product
-@access: Public
+@required body: Details of the product
+@access: Private
 */
 const addNewProduct = asyncHandler(async (req, res) => {
   const products = await Product.create(req.body);

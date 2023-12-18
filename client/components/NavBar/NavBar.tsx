@@ -1,14 +1,32 @@
 'use client';
-import React from 'react';
-import { Navbar, NavbarBrand } from '@nextui-org/react';
+import Link from 'next/link';
+import { Input, Navbar, NavbarBrand } from '@nextui-org/react';
 import { Logo } from '../icons';
+import { ThemeSwitch } from '../theme-switch';
+import { CircleUserRound, Search, ShoppingCart } from 'lucide-react';
 
 const NavBar = () => {
   return (
-    <Navbar className="w-[88%] h-20 flex flex-row justify-between items-center ">
+    <Navbar className="flex justify-evenly">
       <NavbarBrand>
-        <Logo />
+        <Link href="/">
+          <Logo/>
+        </Link>
       </NavbarBrand>
+      <Input
+        type="text"
+     
+        placeholder="Search for product"
+        className="w-[50vw] border-slate-700 outline-none focus-visible:outline-none "
+        endContent={<Search />}
+      />
+      <Link href="/cart">
+        <ShoppingCart cursor="pointer" />
+      </Link>
+      <Link href="/profile">
+        <CircleUserRound cursor="pointer" />
+      </Link>
+      <ThemeSwitch />
     </Navbar>
   );
 };
