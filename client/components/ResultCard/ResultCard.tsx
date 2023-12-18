@@ -40,7 +40,7 @@ const ResultCard = ({ productName, imageURL, price }: IResultCard) => {
             className="w-20"
           >
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-              <SelectItem key={item} textValue={value}>
+              <SelectItem key={item} textValue={value.toString()}>
                 {item}
               </SelectItem>
             ))}
