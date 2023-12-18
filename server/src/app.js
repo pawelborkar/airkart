@@ -22,7 +22,7 @@ app.use(`/api/${API_VERSION}/auth`, auth);
 app.use(`/api/${API_VERSION}/categories`, category);
 app.use(`/api/${API_VERSION}/products`, product);
 app.use(`/api/${API_VERSION}/profile`, profile);
-app.use(`/api/${API_VERSION}/:userId/cart`, cart);
+app.use(`/api/${API_VERSION}/:userId`, cart);
 
 // Database connection
 connectDB();

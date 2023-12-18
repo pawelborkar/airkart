@@ -1,7 +1,4 @@
-import React from 'react';
 import BannerCard from './BannerCard/BannerCard';
-
-type Props = {};
 
 const BannerContainer = () => {
   return (

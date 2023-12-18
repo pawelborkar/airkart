@@ -11,18 +11,19 @@ import { RESPONSE } from '../utils/responseMessages.js';
 @access: Private
 */
 const getCart = asyncHandler(async (req, res, next) => {
-  const userId = req.params.userId;
+  const userId = req.body.userId;
 
   const user = await User.findById(userId);
 
   if (!user) {
     return next(new ErrorResponse(RESPONSE.USER_NOT_EXIST, 404));
   }
-  const cart = await Cart.findById({ user: user._id });
+  const cart = await Cart.find({ userId }).populate('items');
 
+  console.log('cart: ', cart);
   return res.status(200).json({
     success: true,
-    // count: cart.length,
+    count: cart.length,
     cart,
   });
 });
