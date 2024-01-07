@@ -1,10 +1,11 @@
-import '@/styles/globals.css';
 import { Metadata } from 'next';
+import clsx from 'clsx';
+import { Toaster } from 'react-hot-toast';
+import { CustomNextUIProvider, ReactQueryProvider } from './providers';
+import NavBar from '@/components/NavBar/NavBar';
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
-import { Providers } from './providers';
-import clsx from 'clsx';
-import NavBar from '@/components/NavBar/NavBar';
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: {
@@ -24,28 +25,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body
-        className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable
-        )}
-      >
-        <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-          <div className="flex flex-col justify-center items-center w-full h-full">
-            <NavBar />
-            <main className="container mx-auto max-w-9xl flex-grow">
-              {children}
-            </main>
-          </div>
-        </Providers>
+      <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
+        <ReactQueryProvider>
+          <CustomNextUIProvider themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
+            <div className="flex flex-col justify-center items-center w-full h-full">
+              <NavBar />
+              <main className="container mx-auto max-w-9xl flex-grow">{children}</main>
+            </div>
+          </CustomNextUIProvider>
+          <Toaster position="top-right" />
+        </ReactQueryProvider>
       </body>
     </html>
   );

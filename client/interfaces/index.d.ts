@@ -1,6 +1,16 @@
+import { ThemeProviderProps } from 'next-themes/dist/types';
+export interface ICustomNextUIProviderProps {
+  children: React.ReactNode;
+  themeProps?: ThemeProviderProps;
+}
+
+export interface IReactQueryProvidersProps {
+  children: React.ReactNode;
+}
+
 export interface IResultCard {
   id: string;
-  productName: string;
+  name: string;
   price: string;
   imageURL: string;
   description?: Array<string>;

@@ -1,73 +1,73 @@
 'use client';
 import { useState } from 'react';
-import { Button, Card, Image, Select, SelectItem } from '@nextui-org/react';
+import { Button, Card, Chip, Image, Select, SelectItem } from '@nextui-org/react';
 import { IResultCard } from '@/interfaces';
-import { ShoppingCart, Zap } from 'lucide-react';
+import { IndianRupee, ShoppingCart, Zap } from 'lucide-react';
 
-const ResultCard = ({ productName, imageURL, price }: IResultCard) => {
-  const [isInCart] = useState(true);
+const ResultCard = ({ name, imageURL, description, price }: IResultCard) => {
+  //@ts-ignore next-line
+  const descriptionBullets = description?.split('.');
+  console.log(descriptionBullets);
+
+  const [isInCart] = useState(false);
   const [value] = useState([1]);
   return (
-    <Card className="flex flex-row justify-between my-4">
-      <Image
-        alt={productName}
-        removeWrapper
-        height={240}
-        width={240}
-        className="p-3 rounded-lg"
-        isZoomed
-        src={imageURL}
-      />
-      <div className="w-3/5 m-6">
-        <p className="text-2xl">{productName}</p>
-        <div>
-          {[
-            'Titan Watch Stainless Steel Matte Black',
-            'Stainless Steel Strap',
-            'Casual Wear',
-            '5 Yr Warranty',
-            '1 Yr Battery Warranty',
-          ].map((item, idx) => (
-            <li key={idx}>{item}</li>
-          ))}
+    <Card className="flex flex-col rounded-t-3xl justify-between m-4 h-[496px] w-96 shadow-xl">
+      <div className="flex flex-col justify-between w-full items-start">
+        <div className="w-full  flex justify-start">
+          <Image
+            alt={name}
+            removeWrapper
+            className="w-full rounded-t-3xl rounded-b-none object-cover h-80 p-0 "
+            src={
+              'https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            }
+          />
         </div>
-        {isInCart && (
-          <Select
-            variant="flat"
-            placeholder="Qty"
-            label={value}
-            defaultSelectedKeys={value}
-            className="w-20"
-          >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-              <SelectItem key={item} textValue={value.toString()}>
-                {item}
-              </SelectItem>
-            ))}
-          </Select>
-        )}
-      </div>
-      <div className="w-1/5 mr-3 flex flex-col gap-12">
-        <p className="text-2xl mt-4"> &#8377;{price}</p>
-        <div className="h-1/2 flex mt-9 flex-col gap-5 justify-center items-center">
-          <Button
-            radius="full"
-            fullWidth
-            size="lg"
-            color={isInCart ? 'danger' : 'warning'}
-            startContent={<ShoppingCart />}
-          >
-            {isInCart ? 'Remove' : 'Add to cart'}
-          </Button>
-          <Button
-            startContent={<Zap />}
-            radius="full"
-            className="bg-gradient-to-tr from-pink-500 to-orange-500 text-white shadow-lg"
-            fullWidth
-            size="lg"
-          >
-            {isInCart ? 'Checkout' : 'Buy Now'}
-          </Button>
+        <div className="p-4 flex flex-col justify-center items-center w-full h-full">
+          <div className="flex flex-col justify-between items-start ">
+            <p className="text-2xl font-bold">{name}</p>
+            {/* <div> */}
+            {/*   <li>{descriptionBullets[0]}</li> */}
+            {/* </div> */}
+            {isInCart && (
+              <Select
+                variant="flat"
+                placeholder="Qty"
+                label={value}
+                defaultSelectedKeys={value}
+                className="w-20"
+              >
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                  <SelectItem key={item} textValue={value.toString()}>
+                    {item}
+                  </SelectItem>
+                ))}
+              </Select>
+            )}
+          </div>
+          <div className="flex flex-col w-full h-32 justify-evenly items-center">
+            <p className="text-2xl font-medium"> &#8377;{price}</p>
+            <div className="w-full h-1/2 flex justify-around items-center">
+              <Button
+                radius="full"
+                className="w-36 shadow-xl "
+                size="md"
+                color={isInCart ? 'danger' : 'warning'}
+                startContent={<ShoppingCart />}
+              >
+                {isInCart ? 'Remove' : 'Add to cart'}
+              </Button>
+              <Button
+                startContent={<Zap />}
+                radius="full"
+                className="w-36 bg-gradient-to-tr from-pink-500 to-orange-500 text-white shadow-xl"
+                size="md"
+              >
+                {isInCart ? 'Checkout' : 'Buy Now'}
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </Card>
