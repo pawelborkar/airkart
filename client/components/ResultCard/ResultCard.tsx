@@ -1,16 +1,24 @@
 'use client';
 import { useState } from 'react';
-import { Button, Card, Chip, Image, Select, SelectItem } from '@nextui-org/react';
-import { IResultCard } from '@/interfaces';
-import { IndianRupee, ShoppingCart, Zap } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { Button, Card, Image, Select, SelectItem } from '@nextui-org/react';
+import { IProductDetails } from '@/interfaces';
+import { ShoppingCart, Zap } from 'lucide-react';
+import { addItem } from '@/store/cart/cartSlice';
 
-const ResultCard = ({ name, imageURL, description, price }: IResultCard) => {
+const ResultCard = (product: IProductDetails) => {
+  const { name, imageURL, description, price } = product;
   //@ts-ignore next-line
   const descriptionBullets = description?.split('.');
-  console.log(descriptionBullets);
 
   const [isInCart] = useState(false);
   const [value] = useState([1]);
+
+  const dispatch = useDispatch();
+
+  //@ts-ignore next-line
+  const handleAddItem = () => dispatch(addItem(product));
+
   return (
     <Card className="flex flex-col rounded-t-3xl justify-between m-4 h-[496px] w-96 shadow-xl">
       <div className="flex flex-col justify-between w-full items-start">
@@ -55,6 +63,7 @@ const ResultCard = ({ name, imageURL, description, price }: IResultCard) => {
                 size="md"
                 color={isInCart ? 'danger' : 'warning'}
                 startContent={<ShoppingCart />}
+                onClick={handleAddItem}
               >
                 {isInCart ? 'Remove' : 'Add to cart'}
               </Button>

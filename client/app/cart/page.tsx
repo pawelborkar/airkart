@@ -1,33 +1,15 @@
+'use client';
 import ResultCard from '@/components/ResultCard/ResultCard';
-import { IResultCard } from '@/interfaces';
+import { IProductDetails } from '@/interfaces';
+import { RootState } from '@/store/store';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Cart = () => {
-  const cart = [
-    {
-      id: '1',
-      productName: 'College Bag',
-      imageURL:
-        'https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      price: '4,399',
-    },
-    {
-      id: '2',
-      productName: ' Titan Watch for men',
-      imageURL:
-        'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/k/d/k/-original-imagz4wvdj4wkqhm.jpeg?q=70',
-      price: '2,399',
-    },
-    {
-      id: '3',
-      productName: ' Titan Watch for men',
-      imageURL:
-        'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/k/d/k/-original-imagz4wvdj4wkqhm.jpeg?q=70',
-      price: '2,399',
-    },
-  ];
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  console.log('cartItems', cartItems);
   return (
     <>
-      {cart.map((cartItem: IResultCard) => (
+      {cartItems.map((cartItem: IProductDetails) => (
         <ResultCard key={cartItem?.id} {...cartItem} />
       ))}
     </>

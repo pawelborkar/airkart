@@ -4,11 +4,11 @@ export interface ICustomNextUIProviderProps {
   themeProps?: ThemeProviderProps;
 }
 
-export interface IReactQueryProvidersProps {
+export interface IProvider {
   children: React.ReactNode;
 }
 
-export interface IResultCard {
+export interface IProductDetails {
   id: string;
   name: string;
   price: string;
@@ -24,4 +24,15 @@ export interface FormData {
 
 export interface AddProductFormProps {
   onSubmit: SubmitHandler<FormData>;
+}
+
+export interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+export interface CartState {
+  items: CartItem[];
 }
