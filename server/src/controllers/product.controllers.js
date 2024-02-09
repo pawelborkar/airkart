@@ -2,6 +2,7 @@
 Controller: product
 */
 import { asyncHandler } from '../middlewares/asyncHandler.middlewares.js';
+import cloudinary from '../config/cloudinary.config.js';
 import Product from '../models/product.models.js';
 
 /*
@@ -10,7 +11,7 @@ import Product from '../models/product.models.js';
 @route: GET /api/v1/products
 @access: Public
 */
-const getAllProducts = asyncHandler(async (req, res) => {
+const getAllProducts = asyncHandler(async (_, res) => {
   const products = await Product.find({});
   return res.status(200).json({
     success: true,
@@ -26,8 +27,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
 @required body: id of the product
 @access: Public
 */
-const getSingleProduct = asyncHandler(async (req, res) => {
-  // console.log(req.body);
+const getSingleProduct = asyncHandler(async (_, res) => {
   const products = await Product.findById(req.params.id);
   return res.status(200).json({
     success: true,
@@ -43,7 +43,26 @@ const getSingleProduct = asyncHandler(async (req, res) => {
 @access: Private
 */
 const addNewProduct = asyncHandler(async (req, res) => {
-  const products = await Product.create(req.body);
+  const { name, description, price, category, stock } = req.body;
+
+  const uploadFiles = req.files.map(async (file) => {
+    const { secure_url } = await cloudinary.uploader.upload(file.buffer);
+    return secure_url;
+  });
+
+  const imageURLs = await Promise.all(uploadFiles);
+
+  const product = {
+    name,
+    description,
+    category,
+    price,
+    stock,
+    imageURLs,
+  };
+
+  const products = await Product.create(product);
+
   return res.status(201).json({
     success: true,
     products,

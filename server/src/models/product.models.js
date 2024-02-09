@@ -9,6 +9,10 @@ const ProductSchema = new Schema(
       trim: true,
       maxlength: 127,
     },
+    imageURLs: {
+      type: [{ type: String }],
+      require: [true, 'Please upload an image of the product.'],
+    },
     slug: String,
     stock: {
       type: Number,
@@ -17,10 +21,7 @@ const ProductSchema = new Schema(
     category: {
       type: String,
       lowercase: true,
-      require: [
-        true,
-        'Please enter the category to which the product belongs.',
-      ],
+      require: [true, 'Please enter the category to which the product belongs.'],
       maxlength: 50,
     },
     price: {

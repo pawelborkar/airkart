@@ -1,10 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Card, Image, Select, SelectItem } from '@nextui-org/react';
 import { IProductDetails } from '@/interfaces';
-import { ShoppingCart, Zap } from 'lucide-react';
 import { addItem } from '@/store/cart/cartSlice';
+import { RootState } from '@/store/store';
+import { ShoppingCart, Zap } from 'lucide-react';
 
 const ResultCard = (product: IProductDetails) => {
   const { name, imageURL, description, price } = product;
@@ -12,6 +13,7 @@ const ResultCard = (product: IProductDetails) => {
   const descriptionBullets = description?.split('.');
 
   const [isInCart] = useState(false);
+
   const [value] = useState([1]);
 
   const dispatch = useDispatch();
