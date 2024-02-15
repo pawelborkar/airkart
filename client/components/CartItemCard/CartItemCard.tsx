@@ -33,7 +33,7 @@ const CartItemCard = (cartItem: IProductDetails) => {
         />
       </div>
       <div className="w-full flex flex-col md:w-1/4 justify-evenly items-start gap-3 p-3">
-        <div className=''>
+        <div className="">
           <p className="text-xl md:text-2xl font-bold">{name}</p>
           <p className="text-lg md:text-xl text-neutral-500">by {brand}</p>
         </div>

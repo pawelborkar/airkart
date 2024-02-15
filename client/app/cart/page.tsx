@@ -1,7 +1,7 @@
 'use client';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import { ICartItemDetails } from '@/interfaces';
+import { IProductDetails } from '@/interfaces';
 import CartItemCard from '@/components/CartItemCard/CartItemCard';
 
 const Cart = () => {
@@ -10,7 +10,7 @@ const Cart = () => {
     <div className="flex flex-row flex-wrap justify-around items-center w-full h-full ">
       {
         // @ts-ignore next-line
-        cartItems.map((cartItem: ICartItemDetails) => {
+        cartItems.map((cartItem: IProductDetails) => {
           return <CartItemCard key={cartItem?.id} {...cartItem} />;
         })
       }
