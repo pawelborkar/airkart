@@ -1,18 +1,20 @@
 'use client';
-import ResultCard from '@/components/ResultCard/ResultCard';
-import { IProductDetails } from '@/interfaces';
+import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { ICartItemDetails } from '@/interfaces';
+import CartItemCard from '@/components/CartItemCard/CartItemCard';
 
 const Cart = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  console.log('cartItems', cartItems);
   return (
-    <>
-      {cartItems.map((cartItem: IProductDetails) => (
-        <ResultCard key={cartItem?.id} {...cartItem} />
-      ))}
-    </>
+    <div className="flex flex-row flex-wrap justify-around items-center w-full h-full ">
+      {
+        // @ts-ignore next-line
+        cartItems.map((cartItem: ICartItemDetails) => {
+          return <CartItemCard key={cartItem?.id} {...cartItem} />;
+        })
+      }
+    </div>
   );
 };
 

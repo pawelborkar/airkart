@@ -19,10 +19,21 @@ const bannerImageURL = [
 
 const Banner = () => {
   return (
-    <Carousel showArrows autoPlay infiniteLoop showThumbs={false} showStatus={false}>
+    <Carousel
+      showArrows
+      autoPlay
+      infiniteLoop
+      showThumbs={false}
+      showStatus={false}
+    >
       {bannerImageURL.map((image, index) => (
         <div key={index}>
-          <Image width={'100%'} height={600} src={image} alt={`Slide ${index}`} />
+          <Image
+            width={'100%'}
+            height={600}
+            src={image}
+            alt={`Slide ${index}`}
+          />
         </div>
       ))}
     </Carousel>

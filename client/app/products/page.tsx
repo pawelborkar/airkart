@@ -1,6 +1,6 @@
 'use client';
 import ResultCard from '@/components/ResultCard/ResultCard';
-import { IResultCard } from '@/interfaces';
+import { IProductDetails } from '@/interfaces';
 import { getAllProducts } from '@/services/axios';
 import { Spinner } from '@nextui-org/react';
 import { useQuery } from '@tanstack/react-query';
@@ -35,7 +35,7 @@ const Product = () => {
   const { products } = data;
   return (
     <div className="flex flex-row flex-wrap justify-around items-center w-full h-full ">
-      {products.map((cartItem: IResultCard) => (
+      {products.map((cartItem: IProductDetails) => (
         <ResultCard key={cartItem?.id} {...cartItem} />
       ))}
     </div>

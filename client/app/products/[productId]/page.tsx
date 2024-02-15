@@ -1,7 +1,6 @@
 'use client';
 import { Button, Card, Image } from '@nextui-org/react';
 import { ShoppingCart, Zap } from 'lucide-react';
-import { IResultCard } from '@/interfaces';
 import ProductCarousel from '@/components/ProductCarousel/ProductCarousel';
 const product = {
   id: '1',

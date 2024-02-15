@@ -10,7 +10,10 @@ type Props = {
 
 const ProductCard = ({ name, price, image_url }: Props) => {
   return (
-    <Card isFooterBlurred className="w-[180px] h-[220px] mx-2 col-span-12 sm:col-span-5">
+    <Card
+      isFooterBlurred
+      className="w-[180px] h-[220px] mx-2 col-span-12 sm:col-span-5"
+    >
       <CardBody className="overflow-hidden">
         <Image
           alt={name?.toString()}

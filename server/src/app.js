@@ -1,10 +1,12 @@
 import express from 'express';
-import cors from 'cors';
 import dotenv from 'dotenv';
-import connectDB from './db/index.js';
-import { auth, cart, category, product, profile } from './routes/index.js';
-import { errorHandler } from './middlewares/error.middlewares.js';
+import helmet from 'helmet';
+import cors from 'cors';
+import hpp from 'hpp';
 import rateLimit from 'express-rate-limit';
+import connectDB from './db/index.js';
+import { errorHandler } from './middlewares/error.middlewares.js';
+import { auth, cart, category, product, profile } from './routes/index.js';
 dotenv.config({
   path: './.env',
 });
@@ -31,6 +33,8 @@ const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 mins
   max: 150,
 });
+
+app.use(limiter);
 
 //TODO: Set specific origin CORS
 app.use(cors());

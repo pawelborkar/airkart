@@ -49,7 +49,13 @@ const ProductCarousel = () => {
     },
   ];
   return (
-    <Carousel showArrows autoPlay infiniteLoop showStatus={false} showThumbs={false}>
+    <Carousel
+      showArrows
+      autoPlay
+      infiniteLoop
+      showStatus={false}
+      showThumbs={false}
+    >
       {products.map((product) => {
         return (
           <Card className="flex flex-row" key={product.id}>

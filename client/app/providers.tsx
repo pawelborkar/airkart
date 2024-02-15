@@ -8,7 +8,10 @@ import { ICustomNextUIProviderProps, IProvider } from '@/interfaces';
 import { Provider } from 'react-redux';
 import store from '@/store/store';
 
-export const CustomNextUIProvider = ({ children, themeProps }: ICustomNextUIProviderProps) => {
+export const CustomNextUIProvider = ({
+  children,
+  themeProps,
+}: ICustomNextUIProviderProps) => {
   return (
     <NextUIProvider>
       <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>

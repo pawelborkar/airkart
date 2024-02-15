@@ -1,22 +1,33 @@
 'use client';
 import { Button, Card, Image } from '@nextui-org/react';
-import { IResultCard } from '@/interfaces';
+import { IProductDetails } from '@/interfaces';
 import { ShoppingCart, Zap } from 'lucide-react';
 import { useState } from 'react';
 
-const ProductDetails = ({ productName, imageURL, price, description }: IResultCard) => {
+const ProductDetails = ({
+  name,
+  imageURL,
+  price,
+  description,
+}: IProductDetails) => {
   const [isInCart] = useState(true);
   return (
     <Card className="flex flex-row p-4 justify-evenly ">
       <div className="w-4/6">
-        <Image width={480} height={480} isZoomed aria-label={productName} src={imageURL} />
+        <Image
+          width={480}
+          height={480}
+          isZoomed
+          aria-label={name}
+          src={imageURL}
+        />
       </div>
       <div className="w-2/6 m-6">
         <div className="p-2 h-1/6">
           <div></div>
-          <p className="text-3xl">{productName}</p>
+          <p className="text-3xl">{name}</p>
           <div>
-            <p className="text-2xl"> &#8377;{price}</p>
+            <p className="text-2xl"> &#8377; {price}</p>
           </div>
         </div>
         <div className="mt-4 h-3/6">
@@ -32,7 +43,13 @@ const ProductDetails = ({ productName, imageURL, price, description }: IResultCa
         </div>
         {/* <div>{description}</div> */}
         <div className="flex flex-col gap-5 justify-center items-center">
-          <Button radius="full" fullWidth size="lg" color="warning" startContent={<ShoppingCart />}>
+          <Button
+            radius="full"
+            fullWidth
+            size="lg"
+            color="warning"
+            startContent={<ShoppingCart />}
+          >
             {isInCart ? 'Remove from cart' : 'Add to Cart'}
           </Button>
           <Button

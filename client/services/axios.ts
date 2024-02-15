@@ -26,3 +26,12 @@ export const getAllProducts = async () => {
     throw error;
   }
 };
+
+export const addProduct = async (formData: any) => {
+  const response = await axios.post('/api/products', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response.data;
+};

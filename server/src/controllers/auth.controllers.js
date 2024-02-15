@@ -19,7 +19,9 @@ const signUp = asyncHandler(async (req, res) => {
   });
 
   if (userExists) {
-    return res.status(400).json({ success: false, message: RESPONSE.USER_ALREADY_EXISTS });
+    return res
+      .status(400)
+      .json({ success: false, message: RESPONSE.USER_ALREADY_EXISTS });
   }
 
   const user = await User.create({
@@ -95,7 +97,9 @@ const sendTokenResponse = (user, statusCode, res, message) => {
 
   // Options for cookie generation
   const options = {
-    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+    ),
   };
 
   // Enable security property (https) for production

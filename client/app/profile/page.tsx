@@ -1,11 +1,5 @@
-import AddProduct from '@/components/AddProduct/AddProduct';
-
 const Profile = () => {
-  return (
-    <div>
-      <AddProduct />
-    </div>
-  );
+  return <div>hello</div>;
 };
 
 export default Profile;

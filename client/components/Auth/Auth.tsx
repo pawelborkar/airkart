@@ -1,6 +1,13 @@
 'use client';
 import { useState } from 'react';
-import { Button, Card, CardBody, CardFooter, CardHeader, Input } from '@nextui-org/react';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Input,
+} from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 import { Eye, EyeOff } from 'lucide-react';
 
@@ -8,9 +15,11 @@ const Auth = () => {
   const { register, handleSubmit } = useForm();
   const [isSignIn, setIsSignIn] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
 
-  const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
+  const togglePasswordVisibility = () =>
+    setIsPasswordVisible(!isPasswordVisible);
 
   const toggleConfirmPasswordVisibility = () =>
     setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
@@ -25,7 +34,9 @@ const Auth = () => {
     <div className="w-full h-[90vh] flex flex-col justify-center items-center">
       <Card className={`max-w-full h-[480px] backdrop-blur-md  w-96 p-4`}>
         <CardHeader className="h-10 flex justify-center items-center">
-          <p className="text-2xl font-bold">{isSignIn ? 'Sign In' : 'Sign Up'}</p>
+          <p className="text-2xl font-bold">
+            {isSignIn ? 'Sign In' : 'Sign Up'}
+          </p>
         </CardHeader>
         <CardBody className="overflow-hidden h-4/5">
           <form
@@ -105,7 +116,12 @@ const Auth = () => {
           <div className="text-slate-500 dark:text-white/50">
             <p>{isSignIn ? "Didn't have an account?" : 'Have an account?'}</p>
           </div>
-          <Button variant="shadow" fullWidth color="primary" onClick={toggleIsSignIn}>
+          <Button
+            variant="shadow"
+            fullWidth
+            color="primary"
+            onClick={toggleIsSignIn}
+          >
             {isSignIn ? 'Sign Up' : 'Sign In'}
           </Button>
         </CardFooter>
