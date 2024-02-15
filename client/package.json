@@ -3,17 +3,17 @@
   "version": "0.0.1",
   "homepage": "https://airkart.co",
   "private": true,
+  "author": {
+    "name": "Pawel Borkar",
+    "email": "pawel@duck.com",
+    "url": "https://pawel.in"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write . "
-  },
-  "author": {
-    "name": "Pawel Borkar",
-    "email": "pawel@duck.com",
-    "url": "https://pawel.in"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
