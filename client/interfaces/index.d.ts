@@ -15,6 +15,8 @@ export interface IProductDetails {
   brand: string;
   price: number;
   stock: number;
+  countryOfOrigin?: string;
+  tags?: Array<string>;
   imageURLs: Array<string>;
   description?: Array<string>;
   children?: React.ReactNode;

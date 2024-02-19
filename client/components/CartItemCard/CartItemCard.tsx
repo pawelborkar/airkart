@@ -7,7 +7,7 @@ import { useState } from 'react';
 const CartItemCard = (cartItem: IProductDetails) => {
   const [quantity, setQuantity] = useState<number>(0);
 
-  const { name, brand, description, price, imageURLs } = cartItem;
+  const { name, brand, price, imageURLs } = cartItem;
   const handleRemoveItem = () => {
     console.log('Remove Item.');
   };

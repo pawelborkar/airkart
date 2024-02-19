@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Card, Image, Select, SelectItem } from '@nextui-org/react';
 import { IProductDetails } from '@/interfaces';
 import { addItem } from '@/store/cart/cartSlice';
-import { RootState } from '@/store/store';
 import { ShoppingCart, Zap } from 'lucide-react';
 
 const ResultCard = (product: IProductDetails) => {
@@ -12,8 +11,6 @@ const ResultCard = (product: IProductDetails) => {
   const imageURL = imageURLs[0];
 
   const [isInCart] = useState(false);
-
-  const [value] = useState([1]);
 
   const dispatch = useDispatch();
 
