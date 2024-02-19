@@ -1,49 +1,22 @@
 'use client';
+import Link from 'next/link';
 import { Card, Image } from '@nextui-org/react';
+import { categories } from '@/config/site';
 
 export default function Categories() {
-  const categories = [
-    {
-      id: 1,
-      name: 'All Products',
-      url: 'https://rukminim1.flixcart.com/fk-p-flap/68/68/image/790b539a57f7b8cd.png?q=100',
-    },
-    {
-      id: 2,
-      name: 'Mobiles & Tablets',
-      url: 'https://rukminim1.flixcart.com/fk-p-flap/68/68/image/444802d58a814f57.png?q=100',
-    },
-    {
-      id: 3,
-      name: 'Electronics',
-      url: 'https://rukminim1.flixcart.com/fk-p-flap/68/68/image/ce3744f59fadb72e.png?q=100',
-    },
-    {
-      id: 6,
-      name: 'Fashion',
-      url: 'https://rukminim1.flixcart.com/fk-p-flap/68/68/image/e4b01f3d783c49a1.png?q=100',
-    },
-    {
-      id: 4,
-      name: 'TV & Appliances',
-      url: 'https://rukminim1.flixcart.com/fk-p-flap/68/68/image/5b8ad952a656b015.png?q=100',
-    },
-    {
-      id: 5,
-      name: 'Home & kitchen',
-      url: 'https://rukminim1.flixcart.com/fk-p-flap/68/68/image/9ba7be5608413886.png?q=100',
-    },
-  ];
   return (
     <Card className="flex flex-row w-full h-28 justify-around items-center">
-      {categories.map((category) => {
-        return (
-          <div className="flex flex-col items-center cursor-pointer" key={category.id}>
-            <Image width={50} alt={category.name} src={category.url} />
+      {categories?.map((category) => (
+        <Link key={category.id} href={`/${category.path}`}>
+          <div
+            className="flex flex-col items-center cursor-pointer"
+            key={category.id}
+          >
+            <Image width={50} alt={category.name} src={category.banner_url} />
             <p className="text-md mt-2">{category.name}</p>
           </div>
-        );
-      })}
+        </Link>
+      ))}
     </Card>
   );
 }

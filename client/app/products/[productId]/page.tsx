@@ -1,8 +1,7 @@
 'use client';
-import ProductCarousel from '@/components/ProductCarousel/ProductCarousel';
-import { IResultCard } from '@/interfaces';
 import { Button, Card, Image } from '@nextui-org/react';
 import { ShoppingCart, Zap } from 'lucide-react';
+import ProductCarousel from '@/components/ProductCarousel/ProductCarousel';
 const product = {
   id: '1',
   productName: 'College Bag',
@@ -15,7 +14,7 @@ const ProductDetails = () => {
   const isInCart = true;
   return (
     <>
-      <Card className="flex flex-row p-4 mb-8 justify-evenly ">
+      <Card className="flex flex-row p-4 mb-8 justify-evenly">
         <div className="w-4/6 h-[60vh]">
           <Image
             height={480}
@@ -44,7 +43,6 @@ const ProductDetails = () => {
               <li key={idx}>{item}</li>
             ))}
           </div>
-          {/* <div>{description}</div> */}
           <div className="flex flex-col gap-5 justify-center items-center">
             <Button
               radius="full"

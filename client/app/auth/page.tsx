@@ -1,9 +1,6 @@
 import Auth from '@/components/Auth/Auth';
-import React from 'react';
 
-type Props = {};
-
-const auth = (props: Props) => {
+const auth = () => {
   return (
     <div>
       <Auth />

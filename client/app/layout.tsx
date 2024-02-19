@@ -1,10 +1,15 @@
-import '@/styles/globals.css';
 import { Metadata } from 'next';
+import clsx from 'clsx';
+import { Toaster } from 'react-hot-toast';
+import {
+  CustomNextUIProvider,
+  RTKProvider,
+  ReactQueryProvider,
+} from './providers';
+import NavBar from '@/components/NavBar/NavBar';
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
-import { Providers } from './providers';
-import clsx from 'clsx';
-import NavBar from '@/components/NavBar/NavBar';
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: {
@@ -38,14 +43,21 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-          <div className="flex flex-col justify-center items-center w-full h-full">
-            <NavBar />
-            <main className="container mx-auto max-w-9xl flex-grow">
-              {children}
-            </main>
-          </div>
-        </Providers>
+        <RTKProvider>
+          <ReactQueryProvider>
+            <CustomNextUIProvider
+              themeProps={{ attribute: 'class', defaultTheme: 'dark' }}
+            >
+              <div className="flex flex-col justify-center items-center w-full h-full">
+                <NavBar />
+                <main className="container mx-auto max-w-9xl flex-grow">
+                  {children}
+                </main>
+              </div>
+            </CustomNextUIProvider>
+            <Toaster position="top-right" />
+          </ReactQueryProvider>
+        </RTKProvider>
       </body>
     </html>
   );

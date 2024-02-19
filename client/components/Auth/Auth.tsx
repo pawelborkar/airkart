@@ -15,17 +15,24 @@ const Auth = () => {
   const { register, handleSubmit } = useForm();
   const [isSignIn, setIsSignIn] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
 
-  const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
-  const toggleConfirmPasswordVisibility = () => setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
+  const togglePasswordVisibility = () =>
+    setIsPasswordVisible(!isPasswordVisible);
+
+  const toggleConfirmPasswordVisibility = () =>
+    setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
+
+  const toggleIsSignIn = () => {
+    setIsSignIn(!isSignIn);
+  };
+
   const onSubmit = (data: any) => console.log(JSON.stringify(data));
 
   return (
     <div className="w-full h-[90vh] flex flex-col justify-center items-center">
-      <Card
-        className={`max-w-full h-[480px] backdrop-blur-md bg-white/10 w-96 p-4`}
-      >
+      <Card className={`max-w-full h-[480px] backdrop-blur-md  w-96 p-4`}>
         <CardHeader className="h-10 flex justify-center items-center">
           <p className="text-2xl font-bold">
             {isSignIn ? 'Sign In' : 'Sign Up'}
@@ -109,7 +116,12 @@ const Auth = () => {
           <div className="text-slate-500 dark:text-white/50">
             <p>{isSignIn ? "Didn't have an account?" : 'Have an account?'}</p>
           </div>
-          <Button variant="shadow" fullWidth color="primary">
+          <Button
+            variant="shadow"
+            fullWidth
+            color="primary"
+            onClick={toggleIsSignIn}
+          >
             {isSignIn ? 'Sign Up' : 'Sign In'}
           </Button>
         </CardFooter>
