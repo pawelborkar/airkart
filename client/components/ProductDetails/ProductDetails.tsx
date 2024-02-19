@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 const ProductDetails = ({
   name,
-  imageURL,
+  imageURLs,
   price,
   description,
 }: IProductDetails) => {
@@ -19,7 +19,7 @@ const ProductDetails = ({
           height={480}
           isZoomed
           aria-label={name}
-          src={imageURL}
+          src={imageURLs[0]}
         />
       </div>
       <div className="w-2/6 m-6">
@@ -31,17 +31,8 @@ const ProductDetails = ({
           </div>
         </div>
         <div className="mt-4 h-3/6">
-          {[
-            'Titan Watch Stainless Steel Matte Black',
-            'Stainless Steel Strap',
-            'Casual Wear',
-            '5 Yr Warranty',
-            '1 Yr Battery Warranty',
-          ].map((item, idx) => (
-            <li key={idx}>{item}</li>
-          ))}
+          {description}
         </div>
-        {/* <div>{description}</div> */}
         <div className="flex flex-col gap-5 justify-center items-center">
           <Button
             radius="full"
