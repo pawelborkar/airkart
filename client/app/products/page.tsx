@@ -12,11 +12,13 @@ const Product = () => {
     queryFn: getAllProducts,
   });
 
+  const responseTimeLimit = 500;
+
   if (isLoading) {
     return (
       <Spinner
         className="flex w-full h-screen justify-center items-center"
-        label="Loading..."
+        label={responseTimeLimit ? "This might take some time to load since I'm using free web service which goes under sleep after 15 mins of inactivity. \n This is a one time wait and you wont' have to wait this long once the server is awake.": "Loading..."}
         color="warning"
       />
     );
