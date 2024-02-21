@@ -18,7 +18,7 @@ const Product = () => {
     return (
       <Spinner
         className="flex w-full h-screen justify-center items-center"
-        label={responseTimeLimit ? "This might take some time to load since I'm using free web service which goes under sleep after 15 mins of inactivity. \n This is a one time wait and you wont' have to wait this long once the server is awake.": "Loading..."}
+        label={'Loading...'}
         color="warning"
       />
     );
@@ -34,7 +34,7 @@ const Product = () => {
       },
     });
   }
-  const { products } = data;
+  const products = data?.data;
   return (
     <div className="flex flex-row flex-wrap justify-around items-center w-full h-full ">
       {products.map((cartItem: IProductDetails) => (
