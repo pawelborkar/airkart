@@ -12,11 +12,13 @@ const Product = () => {
     queryFn: getAllProducts,
   });
 
+  const responseTimeLimit = 500;
+
   if (isLoading) {
     return (
       <Spinner
         className="flex w-full h-screen justify-center items-center"
-        label="Loading..."
+        label={'Loading...'}
         color="warning"
       />
     );
@@ -32,7 +34,7 @@ const Product = () => {
       },
     });
   }
-  const { products } = data;
+  const products = data?.data;
   return (
     <div className="flex flex-row flex-wrap justify-around items-center w-full h-full ">
       {products.map((cartItem: IProductDetails) => (

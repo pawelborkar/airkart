@@ -15,12 +15,7 @@ import Product from '../models/product.models.js';
 @access: Public
 */
 const getAllProducts = asyncHandler(async (_, res) => {
-  const products = await Product.find({});
-  return res.status(200).json({
-    success: true,
-    count: products.length,
-    products,
-  });
+  return res.status(200).json(res.advancedResults);
 });
 
 /*
@@ -46,16 +41,7 @@ const getSingleProduct = asyncHandler(async (_, res) => {
 @access: Private
 */
 const addNewProduct = asyncHandler(async (req, res) => {
-  const {
-    name,
-    brand,
-    description,
-    price,
-    category,
-    stock,
-    tags,
-    countryOfOrigin,
-  } = req.body;
+  const { name, brand, description, price, category, stock, tags, countryOfOrigin } = req.body;
 
   const uploadFiles = req.files.map(async (file) => {
     try {

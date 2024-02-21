@@ -7,6 +7,7 @@ import rateLimit from 'express-rate-limit';
 import connectDB from './db/index.js';
 import { errorHandler } from './middlewares/error.middlewares.js';
 import { auth, cart, category, product, profile } from './routes/index.js';
+
 dotenv.config({
   path: './.env',
 });
@@ -36,8 +37,9 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-//TODO: Set specific origin CORS
-app.use(cors());
+//TODO: Toggle below comment before commit it to the production
+app.use(cors({ origin: `${process.env.CORS_ALLOWED_ORIGIN}` }));
+// app.use(cors());
 
 // Database connection
 connectDB();
