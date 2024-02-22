@@ -1,4 +1,3 @@
-
 'use client';
 import { useQuery } from '@tanstack/react-query';
 import { Carousel } from 'react-responsive-carousel';
@@ -9,7 +8,7 @@ import { toast } from 'react-hot-toast';
 import { ICategoryProps, IProductDetails } from '@/interfaces';
 import { useProducts } from '@/hooks/useProducts';
 
-const ProductCarousel: React.FC<ICategoryProps>  = ({category}) => {
+const ProductCarousel: React.FC<ICategoryProps> = ({ category }) => {
   const { products, isLoading, isError } = useProducts(category);
 
   // Function to split products into groups of 6
@@ -47,4 +46,3 @@ const ProductCarousel: React.FC<ICategoryProps>  = ({category}) => {
 };
 
 export default ProductCarousel;
-

@@ -9,9 +9,9 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 const Product = (category: any) => {
-  const [isHome, ] = useState<Boolean>(false)
+  const [isHome] = useState<Boolean>(false);
 
-  category = category.searchParams?.category
+  category = category.searchParams?.category;
 
   const { data, isError, isLoading } = useQuery({
     queryKey: ['products', category],

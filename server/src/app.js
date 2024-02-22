@@ -38,8 +38,8 @@ const limiter = rateLimit({
 app.use(limiter);
 
 //TODO: Toggle below comment before commit it to the production
-app.use(cors({ origin: `${process.env.CORS_ALLOWED_ORIGIN}` }));
-// app.use(cors());
+// app.use(cors({ origin: `${process.env.CORS_ALLOWED_ORIGIN}` }));
+app.use(cors());
 
 // Database connection
 connectDB();
