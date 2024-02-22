@@ -9,8 +9,6 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 const Product = (category: any) => {
-  const [isHome] = useState<Boolean>(false);
-
   category = category.searchParams?.category;
 
   const { data, isError, isLoading } = useQuery({
@@ -41,7 +39,7 @@ const Product = (category: any) => {
   const products = data?.data;
   return (
     <>
-      <Categories {...isHome} />
+      <Categories />
       <div className="flex flex-row flex-wrap justify-around items-center w-full h-full ">
         {products.map((cartItem: IProductDetails) => (
           <ResultCard key={cartItem?.id} {...cartItem} />
