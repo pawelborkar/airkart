@@ -21,7 +21,14 @@ export interface IProductDetails {
   description?: Array<string>;
   children?: React.ReactNode;
 }
-
+export interface ISearchParams {
+  searchParams?: {
+    category?: string;
+  };
+}
+export interface ICategoryProps {
+  category: string | ISearchParams;
+}
 export interface IAddNewProductFormData {
   productName: string;
   productDescription: string;

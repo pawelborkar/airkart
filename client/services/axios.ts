@@ -1,4 +1,6 @@
+import { TQueryKey } from '@/types';
 import axios from 'axios';
+import { CloudCog } from 'lucide-react';
 
 const URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
@@ -17,9 +19,12 @@ export const getAllCategories = async () => {
   }
 };
 
-export const getAllProducts = async () => {
+export const getAllProducts = async ({ queryKey }: any) => {
+  let [_, category] = queryKey;
+  console.log('CALL:::', queryKey, 'cat:::', category);
   try {
-    const response = await API.get('/products');
+    const response = await API.get(`/products?category=${category}`);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(`Error fetching categores: ${error}`);
