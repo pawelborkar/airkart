@@ -1,53 +1,27 @@
+
 'use client';
+import { useQuery } from '@tanstack/react-query';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import ProductCard from '../ProductCard/ProductCard';
-import { Card } from '@nextui-org/react';
-const ProductCarousel = () => {
-  const products = [
-    {
-      _id: '6538c9cc0592475ff6457ede',
-      name: 'Google Pixel 7a',
-      category: 'electronics',
-      price: 50999,
-      description:
-        'Immerse yourself in stunning 4K clarity with this smart TV. Stream your favorite content and enjoy vivid colors and sharp images.',
-      createdAt: '2023-10-25T07:54:52.611Z',
-      slug: '55-inch-4k-ultra-hd-tv',
-      __v: 0,
-      id: '6538c9cc0592475ff6457ede',
-      image_url:
-        'https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    },
-    {
-      _id: '65398c9cc0792475ff6457edc',
-      name: 'Nothing Phone 2',
-      category: 'electronics',
-      price: 40999,
-      description:
-        'Stay connected with the Smartwatch X1. It features a vibrant OLED display, heart rate monitoring, and Bluetooth connectivity.',
-      createdAt: '2023-10-25T07:54:52.609Z',
-      slug: 'smartwatch-x1',
-      __v: 0,
-      id: '6538c9cc0592475ff6457edc',
-      image_url:
-        'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/i/s/b/-original-imagrdefh2xgenzz.jpeg?q=70',
-    },
-    {
-      _id: '6538c9cc0792475ff6457eidc',
-      name: 'Nothing Phone 2',
-      category: 'electronics',
-      price: 40999,
-      description:
-        'Stay connected with the Smartwatch X1. It features a vibrant OLED display, heart rate monitoring, and Bluetooth connectivity.',
-      createdAt: '2023-10-25T07:54:52.609Z',
-      slug: 'smartwatch-x1',
-      __v: 0,
-      id: '6538c9cc0592475ff6457edc',
-      image_url:
-        'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/i/s/b/-original-imagrdefh2xgenzz.jpeg?q=70',
-    },
-  ];
+import { Card, Spinner } from '@nextui-org/react';
+import { toast } from 'react-hot-toast';
+import { ICategoryProps, IProductDetails } from '@/interfaces';
+import { useProducts } from '@/hooks/useProducts';
+
+const ProductCarousel: React.FC<ICategoryProps>  = ({category}) => {
+  const { products, isLoading, isError } = useProducts(category);
+
+  // Function to split products into groups of 6
+  const chunkArray = (arr: any[], size: number) => {
+    return Array.from({ length: Math.ceil(arr.length / size) }, (_, index) =>
+      arr.slice(index * size, index * size + size)
+    );
+  };
+
+  // Split products into groups of 6
+  const productChunks = chunkArray(products || [], 4);
+
   return (
     <Carousel
       showArrows
@@ -56,24 +30,21 @@ const ProductCarousel = () => {
       showStatus={false}
       showThumbs={false}
     >
-      {products.map((product) => {
-        return (
-          <Card className="flex flex-row" key={product.id}>
-            {products.map((prod) => {
-              return (
-                <ProductCard
-                  key={prod.id}
-                  name={prod.name}
-                  price={prod.price.toString()}
-                  image_url={prod.image_url}
-                />
-              );
-            })}
-          </Card>
-        );
-      })}
+      {productChunks.map((chunk: IProductDetails[], index: number) => (
+        <div key={index} className="flex flex-row">
+          {chunk.map((product: IProductDetails) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              price={product.price.toString()}
+              image_url={product.imageURLs[0]}
+            />
+          ))}
+        </div>
+      ))}
     </Carousel>
   );
 };
 
 export default ProductCarousel;
+

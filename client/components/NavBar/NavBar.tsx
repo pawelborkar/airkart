@@ -20,7 +20,7 @@ const NavBar = () => {
           <Input
             type="text"
             placeholder="Search for product"
-            className="w-[42vw] border-slate-700 outline-none focus-visible:outline-none "
+            className="w-[42vw] border-slate-700 outline-none focus-visible:outline-none"
             endContent={<Search />}
           />
         </NavbarContent>
@@ -31,8 +31,6 @@ const NavBar = () => {
           <Link href="/profile">
             <CircleUserRound cursor="pointer" />
           </Link>
-          {/* </NavbarContent>
-        <NavbarContent justify='end'> */}
           <ThemeSwitch />
         </NavbarContent>
       </NavbarContent>

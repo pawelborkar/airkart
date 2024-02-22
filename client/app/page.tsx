@@ -12,10 +12,12 @@ export default function Home() {
       </div>
       <BannerCarousel />
       <OfferBanner />
-      <ProductCarousel />
+      <h2 className='p-3 text-2xl font-bold'>Most Popular</h2>
+      <ProductCarousel category="electronics" />
       <BannerContainer />
       <BannerCard banner_url="https://images-eu.ssl-images-amazon.com/images/G/31/img23/AmazonPay/Jupiter23/Event/Train_GW_editorial_2300x646._CB575880778_.jpg" />
-      <ProductCarousel />
+      <h2 className='p-3 text-2xl font-bold'>New Arrivals</h2>
+      <ProductCarousel category="fashion" />
     </div>
   );
 }
