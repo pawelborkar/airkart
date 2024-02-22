@@ -1,15 +1,12 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import ProductCard from '../ProductCard/ProductCard';
-import { Card, Spinner } from '@nextui-org/react';
-import { toast } from 'react-hot-toast';
 import { ICategoryProps, IProductDetails } from '@/interfaces';
 import { useProducts } from '@/hooks/useProducts';
 
-const ProductCarousel: React.FC<ICategoryProps> = ({ category }) => {
-  const { products, isLoading, isError } = useProducts(category);
+const ProductCarousel: React.FC<ICategoryProps> = ({ category }: any) => {
+  const { products } = useProducts(category);
 
   // Function to split products into groups of 6
   const chunkArray = (arr: any[], size: number) => {
