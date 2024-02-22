@@ -65,8 +65,8 @@ const ProductDetails = () => {
           </div>
         </div>
       </Card>
-      <ProductCarousel />
-      <ProductCarousel />
+      {/* <ProductCarousel /> */}
+      {/* <ProductCarousel /> */}
     </>
   );
 };

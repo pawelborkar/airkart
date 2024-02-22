@@ -30,9 +30,7 @@ const ProductDetails = ({
             <p className="text-2xl"> &#8377; {price}</p>
           </div>
         </div>
-        <div className="mt-4 h-3/6">
-          {description}
-        </div>
+        <div className="mt-4 h-3/6">{description}</div>
         <div className="flex flex-col gap-5 justify-center items-center">
           <Button
             radius="full"

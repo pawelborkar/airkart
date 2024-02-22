@@ -10,23 +10,23 @@ type Props = {
 
 const ProductCard = ({ name, price, image_url }: Props) => {
   return (
-    <Card
-      isFooterBlurred
-      className="w-[180px] h-[220px] mx-2 col-span-12 sm:col-span-5"
-    >
-      <CardBody className="overflow-hidden">
+    <Card isFooterBlurred radius="lg" className="m-4">
+      <div className="w-full max-h-[280px] flex justify-center items-center object-cover">
         <Image
           alt={name?.toString()}
-          removeWrapper
           isZoomed
-          className="z-0 mt-2 -translate-y-6 object-fit"
+          className="min-w-[240px] max-w-md max-h-full object-cover"
+          // height={320}
+          // width={420}
+          // removeWrapper
+          // className="z-0 -translate-y-6 object-cover"
           src={image_url?.toString()}
         />
-      </CardBody>
-      <CardFooter className="flex justify-center items-center bg-white/25 bottom-0 border-t-1 border-zinc-100/50 z-10 ">
-        <div className="flex flex-col justify-center items-center">
-          <p className="text-black text-tiny">{name}</p>
-          <p className="text-black text-tiny">{price}</p>
+      </div>
+      <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+        <div className="w-full h-full stify-between items-center">
+          <p className="text-lg">{name}</p>
+          <p className="text-xl">{price}</p>
         </div>
       </CardFooter>
     </Card>
