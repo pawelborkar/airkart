@@ -4,19 +4,47 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import ProductCard from '../ProductCard/ProductCard';
 import { ICategoryProps, IProductDetails } from '@/interfaces';
 import { useProducts } from '@/hooks/useProducts';
+import { useEffect, useState } from 'react';
 
 const ProductCarousel: React.FC<ICategoryProps> = ({ category }: any) => {
   const { products } = useProducts(category);
 
-  // Function to split products into groups of 6
-  const chunkArray = (arr: any[], size: number) => {
+  const [_, setProductChunks] = useState<IProductDetails[][]>([]);
+  // Function to split products into groups of varying sizes based on screen width
+  const chunkArray = (arr: any[], screenWidth: number) => {
+    let size = 1; // Default size for small screens
+    if (screenWidth >= 768 && screenWidth <= 1180) {
+      size = 2; // Show 2 cards on iPad screens
+    } else {
+      size = 4;
+    }
     return Array.from({ length: Math.ceil(arr.length / size) }, (_, index) =>
       arr.slice(index * size, index * size + size)
     );
   };
 
-  // Split products into groups of 6
-  const productChunks = chunkArray(products || [], 4);
+  // Calculate screen width
+  const getScreenWidth = () => {
+    return (
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth
+    );
+  };
+
+  // Split products into groups of varying sizes based on screen width
+  const productChunks = chunkArray(products || [], getScreenWidth());
+
+  // Function to handle window resize and update productChunks accordingly
+  const handleResize = () => {
+    setProductChunks(chunkArray(products || [], getScreenWidth()));
+  };
+
+  // Add resize event listener
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [products]);
 
   return (
     <Carousel
