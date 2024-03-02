@@ -1,4 +1,5 @@
 import { ThemeProviderProps } from 'next-themes/dist/types';
+
 export interface ICustomNextUIProviderProps {
   children: React.ReactNode;
   themeProps?: ThemeProviderProps;
@@ -6,6 +7,14 @@ export interface ICustomNextUIProviderProps {
 
 export interface IProvider {
   children: React.ReactNode;
+}
+
+export interface IProductID {
+  productId: string;
+}
+
+export interface IProductParams {
+  params: IProductID;
 }
 
 export interface IProductDetails {
@@ -20,6 +29,16 @@ export interface IProductDetails {
   imageURLs: Array<string>;
   description?: Array<string>;
   children?: React.ReactNode;
+}
+
+export interface IProductsData {
+  data: IProductDetails[];
+}
+
+export interface IProductsResult {
+  products?: IProductDetails[];
+  isLoading?: boolean;
+  isError?: boolean;
 }
 export interface ISearchParams {
   searchParams?: {
@@ -39,6 +58,7 @@ export interface IAddNewProductFormData {
 export interface IAddProductFormProps {
   onSubmit: (data: ProductFormData) => void;
 }
+
 interface IFileWithPreview extends File {
   name: string;
   preview: string;

@@ -25,7 +25,7 @@ const getAllProducts = asyncHandler(async (_, res) => {
 @required body: id of the product
 @access: Public
 */
-const getSingleProduct = asyncHandler(async (_, res) => {
+const getSingleProduct = asyncHandler(async (req, res) => {
   const products = await Product.findById(req.params.id);
   return res.status(200).json({
     success: true,

@@ -1,19 +1,18 @@
 'use client';
+import { Spinner } from '@nextui-org/react';
+import { toast } from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
+import { getProductsByCategory } from '@/services/axios';
+import { IProductDetails, IProductsData } from '@/interfaces';
 import Categories from '@/components/Categories/Categories';
 import ResultCard from '@/components/ResultCard/ResultCard';
-import { IProductDetails } from '@/interfaces';
-import { getAllProducts } from '@/services/axios';
-import { Spinner } from '@nextui-org/react';
-import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import { toast } from 'react-hot-toast';
 
 const Product = (category: any) => {
   category = category.searchParams?.category;
 
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, isLoading } = useQuery<IProductsData>({
     queryKey: ['products', category],
-    queryFn: getAllProducts,
+    queryFn: getProductsByCategory,
   });
 
   if (isLoading) {
