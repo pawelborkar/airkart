@@ -40,7 +40,7 @@ const Product = (category: any) => {
     <>
       <Categories />
       <div className="flex flex-row flex-wrap justify-around items-center w-full h-full ">
-        {products.map((cartItem: IProductDetails) => (
+        {products?.map((cartItem: IProductDetails) => (
           <ResultCard key={cartItem?.id} {...cartItem} />
         ))}
       </div>
