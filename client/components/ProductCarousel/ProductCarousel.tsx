@@ -28,6 +28,8 @@ const ProductCarousel: React.FC<ICategoryProps> = ({ category }: any) => {
   const getScreenWidth = () => {
     if (window != undefined) {
       return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    } else {
+      return 720;
     }
   };
 
