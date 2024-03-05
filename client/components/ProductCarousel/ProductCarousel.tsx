@@ -1,15 +1,16 @@
 'use client';
+import { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import ProductCard from '../ProductCard/ProductCard';
 import { ICategoryProps, IProductDetails } from '@/interfaces';
 import { useProducts } from '@/hooks/useProducts';
-import { useEffect, useState } from 'react';
 
 const ProductCarousel: React.FC<ICategoryProps> = ({ category }: any) => {
   const { products } = useProducts(category);
 
   const [_, setProductChunks] = useState<IProductDetails[][]>([]);
+
   // Function to split products into groups of varying sizes based on screen width
   const chunkArray = (arr: any[], screenWidth: number) => {
     let size = 1; // Default size for small screens
@@ -25,11 +26,9 @@ const ProductCarousel: React.FC<ICategoryProps> = ({ category }: any) => {
 
   // Calculate screen width
   const getScreenWidth = () => {
-    return (
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth
-    );
+    if (window != undefined) {
+      return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    }
   };
 
   // Split products into groups of varying sizes based on screen width
@@ -47,22 +46,11 @@ const ProductCarousel: React.FC<ICategoryProps> = ({ category }: any) => {
   }, [products]);
 
   return (
-    <Carousel
-      showArrows
-      autoPlay
-      infiniteLoop
-      showStatus={false}
-      showThumbs={false}
-    >
+    <Carousel showArrows autoPlay infiniteLoop showStatus={false} showThumbs={false}>
       {productChunks.map((chunk: IProductDetails[], index: number) => (
         <div key={index} className="flex flex-row">
           {chunk.map((product: IProductDetails) => (
-            <ProductCard
-              key={product.id}
-              name={product.name}
-              price={product.price.toString()}
-              image_url={product.imageURLs[0]}
-            />
+            <ProductCard key={product.id} {...product} />
           ))}
         </div>
       ))}
