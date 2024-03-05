@@ -1,8 +1,8 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, Card, Image, Select, SelectItem } from '@nextui-org/react';
+import { useDispatch } from 'react-redux';
+import { Button, Card, Image } from '@nextui-org/react';
 import { IProductDetails } from '@/interfaces';
 import { addItem } from '@/store/cart/cartSlice';
 import { ShoppingCart, Zap } from 'lucide-react';
