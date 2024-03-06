@@ -9,7 +9,7 @@ import { useProducts } from '@/hooks/useProducts';
 const ProductCarousel: React.FC<ICategoryProps> = ({ category }: any) => {
   const { products } = useProducts(category);
 
-  const [_, setProductChunks] = useState<IProductDetails[][]>([]);
+  const [productChunks, setProductChunks] = useState<IProductDetails[][]>([]);
 
   // Function to split products into groups of varying sizes based on screen width
   const chunkArray = (arr: any[], screenWidth: number) => {
@@ -24,36 +24,33 @@ const ProductCarousel: React.FC<ICategoryProps> = ({ category }: any) => {
     );
   };
 
-  // Calculate screen width
-  const getScreenWidth = () => {
-    if (window != undefined) {
-      return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    } else {
-      return 720;
-    }
-  };
-
-  // Split products into groups of varying sizes based on screen width
-  const productChunks = chunkArray(products || [], getScreenWidth());
-
-  // Function to handle window resize and update productChunks accordingly
-  const handleResize = () => {
-    setProductChunks(chunkArray(products || [], getScreenWidth()));
-  };
-
-  // Add resize event listener
   useEffect(() => {
+    // Calculate screen width
+    const getScreenWidth = () => {
+      if (window !== undefined) {
+        return (
+          window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+        );
+      } else {
+        return 720;
+      }
+    };
+
+    // Function to handle window resize and update productChunks accordingly
+    const handleResize = () => {
+      setProductChunks(chunkArray(products || [], getScreenWidth()));
+    };
+
+    // Add resize event listener
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [products]);
 
   return (
     <Carousel showArrows autoPlay infiniteLoop showStatus={false} showThumbs={false}>
-      {productChunks.map((chunk: IProductDetails[], index: number) => (
+      {productChunks?.map((chunk: IProductDetails[], index: number) => (
         <div key={index} className="flex flex-row">
-          {chunk.map((product: IProductDetails) => (
-            <ProductCard key={product.id} {...product} />
-          ))}
+          {chunk?.map((product: IProductDetails) => <ProductCard key={product.id} {...product} />)}
         </div>
       ))}
     </Carousel>
