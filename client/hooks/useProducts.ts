@@ -1,21 +1,11 @@
-import { IProductDetails } from '@/interfaces';
-import { getAllProducts } from '@/services/axios';
+import { IProductsData, IProductsResult } from '@/interfaces';
+import { getProductsByCategory } from '@/services/axios';
 import { useQuery } from '@tanstack/react-query';
 
-interface ProductsData {
-  data: IProductDetails[];
-}
-
-interface ProductsResult {
-  products?: IProductDetails[];
-  isLoading?: boolean;
-  isError?: boolean;
-}
-
-export function useProducts(category: string): ProductsResult {
-  const { data, isError, isLoading } = useQuery<ProductsData>({
+export function useProducts(category: string): IProductsResult {
+  const { data, isError, isLoading } = useQuery<IProductsData>({
     queryKey: ['products', category],
-    queryFn: getAllProducts,
+    queryFn: getProductsByCategory,
   });
 
   if (isLoading) {

@@ -8,6 +8,10 @@
     "email": "pawel@duck.com",
     "url": "https://pawel.in"
   },
+  "directories": {
+    "type": "git",
+    "url": "https://github.com/pawelborkar/airkart/client"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

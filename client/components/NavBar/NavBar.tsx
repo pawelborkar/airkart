@@ -9,7 +9,7 @@ const NavBar = () => {
   return (
     <Navbar maxWidth="full" className="flex justify-evenly py-2">
       <NavbarContent>
-        <NavbarContent>
+        <NavbarContent className="hidden md:block">
           <NavbarBrand className="max-w-xs h-full mx-5 flex justify-center">
             <Link href={'/'}>
               <Logo />
@@ -20,7 +20,7 @@ const NavBar = () => {
           <Input
             type="text"
             placeholder="Search for product"
-            className="w-[42vw] border-slate-700 outline-none focus-visible:outline-none"
+            className="w-full md:w-[42vw] border-slate-700 outline-none focus-visible:outline-none"
             endContent={<Search />}
           />
         </NavbarContent>
