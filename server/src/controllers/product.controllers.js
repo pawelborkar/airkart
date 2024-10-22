@@ -43,28 +43,28 @@ const getSingleProduct = asyncHandler(async (req, res) => {
 const addNewProduct = asyncHandler(async (req, res) => {
   const { name, brand, description, price, category, stock, tags, countryOfOrigin } = req.body;
 
-  const uploadFiles = req.files.map(async (file) => {
-    try {
-      const tempFileName = `airkart_${Date.now()}-${Math.random() * 1e9}.jpg`;
-      const __dirname = path.dirname(fileURLToPath(import.meta.url));
+  // const uploadFiles = req.files.map(async (file) => {
+  //   try {
+  //     const tempFileName = `airkart_${Date.now()}-${Math.random() * 1e9}.jpg`;
+  //     const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-      const tempFilePath = path.join(__dirname, '../temp', tempFileName);
+  //     const tempFilePath = path.join(__dirname, '../temp', tempFileName);
 
-      fs.writeFileSync(tempFilePath, file.buffer);
+  //     fs.writeFileSync(tempFilePath, file.buffer);
 
-      const { secure_url } = await cloudinary.uploader.upload(tempFilePath);
+  //     const { secure_url } = await cloudinary.uploader.upload(tempFilePath);
 
-      fs.unlinkSync(tempFilePath);
+  //     fs.unlinkSync(tempFilePath);
 
-      return secure_url;
-    } catch (error) {
-      console.error(`Error uploading file to Cloudinary: `, error);
-      throw error;
-    }
-  });
+  //     return secure_url;
+  //   } catch (error) {
+  //     console.error(`Error uploading file to Cloudinary: `, error);
+  //     throw error;
+  //   }
+  // });
 
-  const imageURLs = await Promise.all(uploadFiles);
-  const _tags = tags.split(',').map((tag) => tag.trim());
+  // const imageURLs = await Promise.all(uploadFiles);
+  const _tags = tags?.map((tag) => tag.trim());
   const product = {
     name,
     brand,
@@ -74,7 +74,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
     stock,
     tags: _tags,
     countryOfOrigin,
-    imageURLs,
+    // imageURLs,
   };
 
   const products = await Product.create(product);
