@@ -1,4 +1,4 @@
-# [Airkart.co](https://airkart.co)
+# [Airkart](https://airkart.pawel.in)
 
 ---
 
