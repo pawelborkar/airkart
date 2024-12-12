@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
-ARG NODE_VERSION=18.18.2
-ARG PNPM_VERSION=8.9.2
+ARG NODE_VERSION=22.12
+ARG PNPM_VERSION=9.14.2
 
 FROM node:${NODE_VERSION}-alpine
 
