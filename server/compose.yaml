@@ -9,7 +9,7 @@ services:
     networks:
       - airkart-network
 
-  airkart:
+  backend:
     build: .
     container_name: "airkart-backend_v${TAG}"
     ports:
